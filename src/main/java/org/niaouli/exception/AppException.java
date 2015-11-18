@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * Exception with embedded errors descriptions.
  *
- * @author Arnaud Rolly <arnaud@niaouli.org>
+ * @author Arnaud Rolly <github@niaouli.org>
  */
 public class AppException extends Throwable {
 

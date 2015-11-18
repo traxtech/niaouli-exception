@@ -25,8 +25,9 @@ import org.niaouli.exception.AppError;
 import org.niaouli.exception.AppException;
 
 /**
+ * Test the exceptions.
  *
- * @author Arnaud Rolly <arnaud@niaouli.org>
+ * @author Arnaud Rolly <github@niaouli.org>
  */
 public class AppExceptionTest {
 

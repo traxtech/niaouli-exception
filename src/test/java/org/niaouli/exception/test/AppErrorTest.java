@@ -22,8 +22,9 @@ import org.junit.Test;
 import org.niaouli.exception.AppError;
 
 /**
+ * Test the errors descriptions.
  *
- * @author Arnaud Rolly <arnaud@niaouli.org>
+ * @author Arnaud Rolly <github@niaouli.org>
  */
 public class AppErrorTest {
 
