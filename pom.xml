@@ -5,8 +5,24 @@
     <artifactId>exception</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>Niaouli Exception</name>
+    <name>niaouli-exception</name>
     <description>Lightweight Java exception library.</description>
+    <licenses>
+        <license>
+            <name>GNU Lesser General Public License, v3</name>
+            <url>http://www.gnu.org/licenses/lgpl-3.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>If you need a commercial licence, please contact the developer</comments>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>traxtech</id>
+            <name>Arnaud Rolly</name>
+            <email>github@gedial.com</email>
+            <url>https://github.com/traxtech</url>
+        </developer>
+    </developers>    
     <scm>
         <connection>scm:git:git@github.com:traxtech/niaouli-exception.git</connection>
         <url>scm:git:git@github.com:traxtech/niaouli-exception.git</url>
