@@ -5,6 +5,13 @@
     <artifactId>exception</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
+    <name>Niaouli Exception</name>
+    <description>Lightweight Java exception library.</description>
+    <scm>
+        <connection>scm:git:git@github.com:traxtech/niaouli-exception.git</connection>
+        <url>scm:git:git@github.com:traxtech/niaouli-exception.git</url>
+        <developerConnection>scm:git:git@github.com:traxtech/niaouli-exception.git</developerConnection>
+    </scm>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.5</maven.compiler.source>
@@ -55,6 +62,4 @@
             </plugin>
         </plugins>
     </reporting>
-    <name>Niaouli Exception</name>
-    <description>Lightweight Java exception library.</description>
 </project>
