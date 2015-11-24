@@ -49,8 +49,4 @@ public class MsgTemplate {
         return locale;
     }
 
-    public final String getTemplate() {
-        return template;
-    }
-
 }

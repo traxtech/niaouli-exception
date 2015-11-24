@@ -19,6 +19,8 @@ package org.niaouli.exception;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Render errors in string for humans.
@@ -26,6 +28,9 @@ import java.util.Map;
  * @author Arnaud Rolly <github@niaouli.org>
  */
 public class MsgFormatter {
+
+    private static final Logger LOGGER
+            = Logger.getLogger(MsgFormatter.class.getName());
 
     private Locale defaultLocale;
     private final Map<String, MsgTemplate> templates
@@ -37,18 +42,23 @@ public class MsgFormatter {
     }
 
     public final String format(final AppError pError, final Locale pLocale) {
+        // Identify the locale to use
         Locale effectiveLocale = pLocale;
         if (effectiveLocale == null) {
             effectiveLocale = defaultLocale;
         }
         if (effectiveLocale == null) {
-            return pError.getMsg();
+            effectiveLocale = Locale.getDefault();
         }
         String key = computeKey(pError.getMsg(), effectiveLocale);
-        if (!templates.containsKey(key) && defaultLocale != null) {
-            key = computeKey(pError.getMsg(), defaultLocale);
+        while (!templates.containsKey(key) && effectiveLocale != null) {
+            effectiveLocale = getUpperLocale(effectiveLocale);
+            if (effectiveLocale != null) {
+                key = computeKey(pError.getMsg(), effectiveLocale);
+            }
         }
         if (!templates.containsKey(key)) {
+            LOGGER.log(Level.SEVERE, "Failed to get template for msg={0} requested locale={1} effective locale={2}", new Object[]{pError.getMsg(), pLocale, effectiveLocale});
             return pError.getMsg();
         } else {
             return templates.get(key).format(pError.getParams());
@@ -65,5 +75,17 @@ public class MsgFormatter {
 
     private String computeKey(final String pMsg, final Locale pLocale) {
         return pMsg + "." + pLocale.toString();
+    }
+
+    private Locale getUpperLocale(final Locale pLocale) {
+        final Locale uppedLocale;
+        if (!pLocale.getVariant().isEmpty()) {
+            uppedLocale = new Locale(pLocale.getLanguage(), pLocale.getCountry());
+        } else if (!pLocale.getCountry().isEmpty()) {
+            uppedLocale = new Locale(pLocale.getLanguage());
+        } else {
+            uppedLocale = null;
+        }
+        return uppedLocale;
     }
 }
