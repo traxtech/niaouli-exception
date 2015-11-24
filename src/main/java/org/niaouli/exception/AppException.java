@@ -87,7 +87,8 @@ public class AppException extends Throwable {
      * @param pParams Parameters of the message.
      * @param pField Field of the error.
      */
-    public AppException(final String pMsg, final Serializable[] pParams, final String pField) {
+    public AppException(final String pMsg, final Serializable[] pParams,
+            final String pField) {
         this.errors.add(new AppError(pMsg, pParams, pField));
     }
 

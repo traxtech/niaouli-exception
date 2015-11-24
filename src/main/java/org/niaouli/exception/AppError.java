@@ -75,7 +75,8 @@ public class AppError implements Serializable {
      * @param pParams Message parameters.
      * @param pField Field that caused the error.
      */
-    public AppError(final String pMsg, final Serializable[] pParams, final String pField) {
+    public AppError(final String pMsg, final Serializable[] pParams,
+            final String pField) {
         this.msg = pMsg;
         this.params = pParams;
         this.field = pField;
@@ -118,7 +119,7 @@ public class AppError implements Serializable {
     }
 
     @Override
-    public final boolean equals(Object pObj) {
+    public final boolean equals(final Object pObj) {
         if (pObj == null) {
             return false;
         }
@@ -139,7 +140,7 @@ public class AppError implements Serializable {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("ServiceError[msg=");
         sb.append(msg);

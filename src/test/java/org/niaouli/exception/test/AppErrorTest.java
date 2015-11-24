@@ -35,6 +35,7 @@ public class AppErrorTest {
         assertThat(sm.getMsg()).isEqualTo(msg);
         assertThat(sm.getParams()).isNull();
         assertThat(sm.getField()).isNull();
+        assertThat(sm.toString()).isNotNull();
     }
 
     @Test
