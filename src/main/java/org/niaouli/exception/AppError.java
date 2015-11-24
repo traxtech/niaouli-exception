@@ -77,9 +77,13 @@ public class AppError implements Serializable {
      */
     public AppError(final String pMsg, final Serializable[] pParams,
             final String pField) {
-        this.msg = pMsg;
-        this.params = pParams;
-        this.field = pField;
+        msg = pMsg;
+        if (pParams != null) {
+            params = pParams.clone();
+        } else {
+            params = null;
+        }
+        field = pField;
     }
 
     /**
@@ -97,7 +101,11 @@ public class AppError implements Serializable {
      * @return Error message parameters.
      */
     public final Serializable[] getParams() {
-        return params;
+        if (params == null) {
+            return null;
+        } else {
+            return params.clone();
+        }
     }
 
     /**
@@ -145,7 +153,7 @@ public class AppError implements Serializable {
         sb.append("ServiceError[msg=");
         sb.append(msg);
         sb.append(",params=");
-        sb.append(params);
+        sb.append(Arrays.toString(params));
         sb.append(",field=");
         sb.append(field);
         sb.append("]");

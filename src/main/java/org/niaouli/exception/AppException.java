@@ -26,7 +26,7 @@ import java.util.List;
  *
  * @author Arnaud Rolly <github@niaouli.org>
  */
-public class AppException extends Throwable {
+public class AppException extends Exception {
 
     /**
      * Errors that caused the exception.
@@ -48,6 +48,7 @@ public class AppException extends Throwable {
      * @param pError Error that caused the exception.
      */
     public AppException(final AppError pError) {
+        super(pError.getMsg());
         this.errors.add(pError);
     }
 
@@ -89,6 +90,7 @@ public class AppException extends Throwable {
      */
     public AppException(final String pMsg, final Serializable[] pParams,
             final String pField) {
+        super(pMsg);
         this.errors.add(new AppError(pMsg, pParams, pField));
     }
 
