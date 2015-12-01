@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.niaouli</groupId>
     <artifactId>exception</artifactId>
-    <version>0.1</version>
+    <version>0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>niaouli-exception</name>
     <description>Lightweight Java exception library.</description>
@@ -28,8 +28,7 @@
         <connection>scm:git:git@github.com:traxtech/niaouli-exception.git</connection>
         <url>scm:git:git@github.com:traxtech/niaouli-exception.git</url>
         <developerConnection>scm:git:git@github.com:traxtech/niaouli-exception.git</developerConnection>
-      <tag>niaouli-exception-0.1</tag>
-  </scm>
+    </scm>
     <distributionManagement>
         <repository>
             <id>ossrh</id>
