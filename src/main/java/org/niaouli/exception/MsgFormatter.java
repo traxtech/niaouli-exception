@@ -1,19 +1,18 @@
 /**
  * This file is part of Niaouli Exception.
  *
- * Niaouli Exception is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by the Free
- * Software Foundation, either version 3 of the License, or (at your option) any
- * later version.
+ * Niaouli Exception is free software: you can redistribute it and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
  *
- * Niaouli Exception is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
- * details.
+ * Niaouli Exception is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License along with
- * Niaouli Exception. If not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License along with Niaouli Exception.
+ * If not, see http://www.gnu.org/licenses/.
  */
+
 package org.niaouli.exception;
 
 import java.util.HashMap;
@@ -29,63 +28,63 @@ import java.util.logging.Logger;
  */
 public class MsgFormatter {
 
-    private static final Logger LOGGER
-            = Logger.getLogger(MsgFormatter.class.getName());
+  private static final Logger LOGGER = Logger.getLogger(MsgFormatter.class.getName());
 
-    private Locale defaultLocale;
-    private final Map<String, MsgTemplate> templates
-            = new HashMap<String, MsgTemplate>();
+  private Locale defaultLocale;
+  private final Map<String, MsgTemplate> templates = new HashMap<String, MsgTemplate>();
 
-    public final void addTemplate(final MsgTemplate pTemplate) {
-        String key = computeKey(pTemplate.getMsg(), pTemplate.getLocale());
-        templates.put(key, pTemplate);
+  public final void addTemplate(final MsgTemplate template) {
+    String key = computeKey(template.getMsg(), template.getLocale());
+    templates.put(key, template);
+  }
+
+  public String format(final AppError error, final Locale locale) {
+    // Identify the locale to use
+    Locale effectiveLocale = locale;
+    if (effectiveLocale == null) {
+      effectiveLocale = defaultLocale;
     }
-
-    public final String format(final AppError pError, final Locale pLocale) {
-        // Identify the locale to use
-        Locale effectiveLocale = pLocale;
-        if (effectiveLocale == null) {
-            effectiveLocale = defaultLocale;
-        }
-        if (effectiveLocale == null) {
-            effectiveLocale = Locale.getDefault();
-        }
-        String key = computeKey(pError.getMsg(), effectiveLocale);
-        while (!templates.containsKey(key) && effectiveLocale != null) {
-            effectiveLocale = getUpperLocale(effectiveLocale);
-            if (effectiveLocale != null) {
-                key = computeKey(pError.getMsg(), effectiveLocale);
-            }
-        }
-        if (!templates.containsKey(key)) {
-            LOGGER.log(Level.SEVERE, "Failed to get template for msg={0} requested locale={1} effective locale={2}", new Object[]{pError.getMsg(), pLocale, effectiveLocale});
-            return pError.getMsg();
-        } else {
-            return templates.get(key).format(pError.getParams());
-        }
+    if (effectiveLocale == null) {
+      effectiveLocale = Locale.getDefault();
     }
-
-    public final Locale getDefaultLocale() {
-        return defaultLocale;
+    String key = computeKey(error.getMsg(), effectiveLocale);
+    while (!templates.containsKey(key) && effectiveLocale != null) {
+      effectiveLocale = getUpperLocale(effectiveLocale);
+      if (effectiveLocale != null) {
+        key = computeKey(error.getMsg(), effectiveLocale);
+      }
     }
-
-    public final void setDefaultLocale(final Locale pDefaultLocale) {
-        defaultLocale = pDefaultLocale;
+    if (!templates.containsKey(key)) {
+      LOGGER.log(Level.SEVERE,
+          "Failed to get template for msg={0} requested locale={1} effective locale={2}",
+          new Object[] {error.getMsg(), locale, effectiveLocale});
+      return error.getMsg();
+    } else {
+      return templates.get(key).format(error.getParams());
     }
+  }
 
-    private String computeKey(final String pMsg, final Locale pLocale) {
-        return pMsg + "." + pLocale.toString();
-    }
+  public Locale getDefaultLocale() {
+    return defaultLocale;
+  }
 
-    private Locale getUpperLocale(final Locale pLocale) {
-        final Locale uppedLocale;
-        if (!pLocale.getVariant().isEmpty()) {
-            uppedLocale = new Locale(pLocale.getLanguage(), pLocale.getCountry());
-        } else if (!pLocale.getCountry().isEmpty()) {
-            uppedLocale = new Locale(pLocale.getLanguage());
-        } else {
-            uppedLocale = null;
-        }
-        return uppedLocale;
+  public void setDefaultLocale(final Locale newDefaultLocale) {
+    defaultLocale = newDefaultLocale;
+  }
+
+  private String computeKey(final String msg, final Locale locale) {
+    return msg + "." + locale.toString();
+  }
+
+  private Locale getUpperLocale(final Locale locale) {
+    final Locale uppedLocale;
+    if (!locale.getVariant().isEmpty()) {
+      uppedLocale = new Locale(locale.getLanguage(), locale.getCountry());
+    } else if (!locale.getCountry().isEmpty()) {
+      uppedLocale = new Locale(locale.getLanguage());
+    } else {
+      uppedLocale = null;
     }
+    return uppedLocale;
+  }
 }
