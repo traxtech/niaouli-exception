@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 /**
  * Render errors in string for humans.
  *
- * @author Arnaud Rolly <github@niaouli.org>
+ * @author Arnaud Rolly
  */
 public class MsgFormatter {
 

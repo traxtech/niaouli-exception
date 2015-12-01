@@ -22,7 +22,7 @@ import java.util.Arrays;
 /**
  * Error description.
  *
- * @author Arnaud Rolly <github@niaouli.org>
+ * @author Arnaud Rolly
  */
 public class AppError implements Serializable {
 

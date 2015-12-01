@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * Exception with embedded errors descriptions.
  *
- * @author Arnaud Rolly <github@niaouli.org>
+ * @author Arnaud Rolly
  */
 public class AppException extends Exception {
 

@@ -21,8 +21,9 @@ import java.text.MessageFormat;
 import java.util.Locale;
 
 /**
+ * Template to render a message error from.
  *
- * @author Arnaud Rolly <github@niaouli.org>
+ * @author Arnaud Rolly
  */
 public class MsgTemplate {
 
