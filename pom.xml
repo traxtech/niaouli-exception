@@ -7,6 +7,7 @@
     <packaging>jar</packaging>
     <name>niaouli-exception</name>
     <description>Lightweight Java exception library.</description>
+    <url>https://github.com/traxtech/niaouli-exception</url>
     <licenses>
         <license>
             <name>GNU Lesser General Public License, v3</name>
@@ -53,6 +54,9 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <build>
+        <finalName>niaouli-exception</finalName>
+    </build>
     <reporting>
         <plugins>
             <plugin>
