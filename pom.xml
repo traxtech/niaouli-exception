@@ -56,7 +56,7 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>niaouli-exception</finalName>
+        <finalName>niaouli-exception-${project.version}</finalName>
     </build>
     <reporting>
         <plugins>
@@ -171,7 +171,6 @@
                     </plugin>
                 </plugins>
             </build>
-
         </profile>
     </profiles>
 </project>
